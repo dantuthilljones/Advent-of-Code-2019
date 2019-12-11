@@ -1,57 +1,34 @@
 package Day05;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.function.Function;
 import java.util.function.IntConsumer;
+import java.util.stream.Collectors;
 
 public class IntcodeComputer {
 
-    private final List<Integer> input;
-    private final List<Integer> program;
+    private final Map<Integer, Operation> operations;
+    private final int HALT = 99;
 
-    private static final int ADD = 1, MULTIPLY = 2, STOP = 99;
-
-    public IntcodeComputer(List<Integer> input, List<Integer> program) {
-        this.input = input;
-        this.program = program;
+    public IntcodeComputer(List<Operation> operations) {
+        this.operations = operations.stream().collect(Collectors.toMap(Operation::opCode, Function.identity()));
     }
 
-    public List<Integer> compute() {
+    public List<Integer> runProgram(List<Integer> program, Queue<Integer> inputs) {
+        List<Integer> outputs = new ArrayList<>();
 
-    }
-
-    private static void executeProgram(List<Integer> program) {
-        int index = 0;
-        while (doStep(program, index)) {
-            index += 4;
+        int position = 0;
+        while(true) {
+            int opcode = program.get(position) % 100;
+            if (opcode == HALT) {
+                return outputs;
+            }
+            Operation operation =  operations.get(opcode);
+            position = operation.perform(program, position, inputs, outputs);
         }
-    }
-
-    private static boolean doStep(List<Integer> program, int index) {
-        int operation = program.get(index);
-        if (operation == STOP) {
-            return false;
-        } else if (operation == ADD) {
-            sum(program, program.get(index + 1), program.get(index + 2), program.get(index + 3));
-        } else if (operation == MULTIPLY) {
-            multiply(program, program.get(index + 1), program.get(index + 2), program.get(index + 3));
-        } else {
-            throw new RuntimeException("Something went wrong. Recieved opcode " + operation);
-        }
-        return true;
-    }
-
-    private static void sum(List<Integer> program, int index1, int index2, int resultIndex) {
-        int num1 = program.get(index1);
-        int num2 = program.get(index2);
-        int result = num1 + num2;
-        program.set(resultIndex, result);
-    }
-
-    private static void multiply(List<Integer> program, int index1, int index2, int resultIndex) {
-        int num1 = program.get(index1);
-        int num2 = program.get(index2);
-        int result = num1 * num2;
-        program.set(resultIndex, result);
     }
 
 }
