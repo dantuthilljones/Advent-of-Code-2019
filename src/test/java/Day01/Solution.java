@@ -9,14 +9,14 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TestDay01 {
+public class Solution {
 
     private static long fuelRequiredIncludingFuel(List<Long> modulesMasses) {
-        return modulesMasses.stream().mapToLong(TestDay01::fuelIncludingFuelForMass).sum();
+        return modulesMasses.stream().mapToLong(Solution::fuelIncludingFuelForMass).sum();
     }
 
     private static long fuelRequired(List<Long> modulesMasses) {
-        return modulesMasses.stream().mapToLong(TestDay01::fuelForMass).sum();
+        return modulesMasses.stream().mapToLong(Solution::fuelForMass).sum();
     }
 
     private static long fuelForMass(long mass) {

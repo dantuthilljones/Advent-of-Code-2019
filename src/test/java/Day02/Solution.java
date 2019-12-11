@@ -1,5 +1,6 @@
 package Day02;
 
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TestDay02 {
+public class Solution {
 
     private static final int ADD = 1, MULTIPLY = 2, STOP = 99;
 
@@ -88,10 +89,10 @@ public class TestDay02 {
 
     @Test
     public void testExecuteProgram() {
-        List<Integer> program = List.of(1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50).stream().collect(Collectors.toList());
+        List<Integer> program = Lists.newArrayList(1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50);
         executeProgram(program);
 
-        List<Integer> expectedResult = List.of(3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50);
+        List<Integer> expectedResult = Lists.newArrayList(3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50);
 
         Assert.assertEquals(expectedResult, program);
     }
