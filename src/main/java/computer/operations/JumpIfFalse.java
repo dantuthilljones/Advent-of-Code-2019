@@ -1,32 +1,33 @@
-package Day05;
+package computer.operations;
+
+import computer.ParameterManager;
 
 import java.util.List;
 import java.util.Queue;
 
-public class LessThan implements Operation {
+public class JumpIfFalse implements Operation {
 
     private final ParameterManager parameterManager;
 
-    public LessThan(ParameterManager parameterManager) {
+    public JumpIfFalse(ParameterManager parameterManager) {
         this.parameterManager = parameterManager;
     }
 
     @Override
-    public int perform(List<Integer> program, int position, Queue<Integer> inputs, List<Integer> outputs) {
+    public int perform(List<Integer> program, int position) {
         int[] paramModes = parameterManager.getParamModes(program.get(position));
         int num1 = parameterManager.get(paramModes[0], position + 1, program);
         int num2 = parameterManager.get(paramModes[1], position + 2, program);
 
-        if (num1 < num2) {
-            parameterManager.set(paramModes[2], position + 3, 1, program);
+        if (num1 == 0) {
+            return num2;
         } else {
-            parameterManager.set(paramModes[2], position + 3, 0, program);
+            return position + 3;
         }
-        return position + 4;
     }
 
     @Override
     public int opCode() {
-        return 7;
+        return 6;
     }
 }

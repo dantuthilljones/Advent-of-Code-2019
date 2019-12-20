@@ -1,4 +1,6 @@
-package Day05;
+package computer.operations;
+
+import computer.ParameterManager;
 
 import java.util.List;
 import java.util.Queue;
@@ -12,7 +14,7 @@ public class Equals implements Operation {
     }
 
     @Override
-    public int perform(List<Integer> program, int position, Queue<Integer> inputs, List<Integer> outputs) {
+    public int perform(List<Integer> program, int position) {
         int[] paramModes = parameterManager.getParamModes(program.get(position));
         int num1 = parameterManager.get(paramModes[0], position + 1, program);
         int num2 = parameterManager.get(paramModes[1], position + 2, program);
