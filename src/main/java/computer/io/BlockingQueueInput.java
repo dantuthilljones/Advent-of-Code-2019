@@ -12,7 +12,10 @@ public class BlockingQueueInput implements ComputerInput {
     @Override
     public int get() {
         try {
-            return queue.take();
+            System.out.println(Thread.currentThread().getName() + ": Waiting to take input..");
+            int take = queue.take();
+            System.out.println(Thread.currentThread().getName() + ": Took input " + take);
+            return take;
         } catch (InterruptedException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

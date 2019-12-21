@@ -12,6 +12,7 @@ public class QueueOfferOutput implements ComputerOutput {
 
     @Override
     public void output(int value) {
+        System.out.println(Thread.currentThread().getName() + ": Offering " + value);
         queue.offer(value);
     }
 

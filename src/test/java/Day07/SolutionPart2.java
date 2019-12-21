@@ -60,6 +60,7 @@ public class SolutionPart2 {
         QueueOfferOutput outputE = new QueueOfferOutput(blockingQueueA);
 
         blockingQueueA.add(inputPhases.get(0));
+        blockingQueueA.add(0);
         blockingQueueB.add(inputPhases.get(1));
         blockingQueueC.add(inputPhases.get(2));
         blockingQueueD.add(inputPhases.get(3));
@@ -69,25 +70,29 @@ public class SolutionPart2 {
             IntcodeComputer computer = buildComputer(inputA, outputA);
             computer.runProgram(program);
         });
-        threadA.run();
+        threadA.setName("Computer A");
+        threadA.start();
 
         Thread threadB = new Thread(() -> {
             IntcodeComputer computer = buildComputer(inputB, outputB);
             computer.runProgram(program);
         });
-        threadB.run();
+        threadB.setName("Computer B");
+        threadB.start();
 
         Thread threadC = new Thread(() -> {
             IntcodeComputer computer = buildComputer(inputC, outputC);
             computer.runProgram(program);
         });
-        threadC.run();
+        threadC.setName("Computer C");
+        threadC.start();
 
         Thread threadD = new Thread(() -> {
             IntcodeComputer computer = buildComputer(inputD, outputD);
             computer.runProgram(program);
         });
-        threadD.run();
+        threadD.setName("Computer D");
+        threadD.start();
 
         IntcodeComputer computer = buildComputer(inputE, outputE);
         computer.runProgram(program);
