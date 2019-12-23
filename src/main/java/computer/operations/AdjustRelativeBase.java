@@ -1,30 +1,27 @@
 package computer.operations;
 
 import computer.ParameterManager;
-import computer.io.ComputerOutput;
 
 import java.util.List;
 
-public class Output implements Operation {
+public class AdjustRelativeBase implements Operation {
 
     private final ParameterManager parameterManager;
-    private final ComputerOutput computerOutput;
 
-    public Output(ParameterManager parameterManager, ComputerOutput computerOutput) {
+    public AdjustRelativeBase(ParameterManager parameterManager) {
         this.parameterManager = parameterManager;
-        this.computerOutput = computerOutput;
     }
 
     @Override
     public int perform(List<Long> program, int position) {
         int[] paramModes = parameterManager.getParamModes(program.get(position));
-        long value = parameterManager.get(paramModes[0], position + 1, program);
-        computerOutput.output(value);
+        long baseAdjustment = parameterManager.get(paramModes[0], position +1, program);
+        parameterManager.adjustRelativeBase(baseAdjustment);
         return position + 2;
     }
 
     @Override
     public int opCode() {
-        return 4;
+        return 9;
     }
 }

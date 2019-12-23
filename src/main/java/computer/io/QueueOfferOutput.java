@@ -4,19 +4,19 @@ import java.util.Queue;
 
 public class QueueOfferOutput implements ComputerOutput {
 
-    private final Queue<Integer> queue;
+    private final Queue<Long> queue;
 
-    public QueueOfferOutput(Queue<Integer> queue) {
+    public QueueOfferOutput(Queue<Long> queue) {
         this.queue = queue;
     }
 
     @Override
-    public void output(int value) {
+    public void output(long value) {
         System.out.println(Thread.currentThread().getName() + ": Offering " + value);
         queue.offer(value);
     }
 
-    public Queue<Integer> getQueue() {
+    public Queue<Long> getQueue() {
         return queue;
     }
 }

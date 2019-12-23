@@ -3,7 +3,6 @@ package computer.operations;
 import computer.ParameterManager;
 
 import java.util.List;
-import java.util.Queue;
 
 public class Multiply implements Operation {
 
@@ -14,11 +13,11 @@ public class Multiply implements Operation {
     }
 
     @Override
-    public int perform(List<Integer> program, int position) {
+    public int perform(List<Long> program, int position) {
         int[] paramModes = parameterManager.getParamModes(program.get(position));
-        int num1 = parameterManager.get(paramModes[0], position + 1, program);
-        int num2 = parameterManager.get(paramModes[1], position + 2, program);
-        int answer = num1 * num2;
+        long num1 = parameterManager.get(paramModes[0], position + 1, program);
+        long num2 = parameterManager.get(paramModes[1], position + 2, program);
+        long answer = num1 * num2;
         parameterManager.set(paramModes[2], position + 3, answer, program);
         return position + 4;
     }

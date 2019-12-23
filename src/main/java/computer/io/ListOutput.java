@@ -5,18 +5,18 @@ import java.util.List;
 
 public class ListOutput implements ComputerOutput {
 
-    private final List<Integer> output;
+    private final List<Long> output;
 
     public ListOutput() {
         output = new ArrayList<>();
     }
 
     @Override
-    public void output(int value) {
+    public void output(long value) {
         output.add(value);
     }
 
-    public List<Integer> getOutput() {
+    public List<Long> getOutput() {
         return output;
     }
 

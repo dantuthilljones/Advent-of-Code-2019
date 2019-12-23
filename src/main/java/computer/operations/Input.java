@@ -16,7 +16,7 @@ public class Input implements Operation {
     }
 
     @Override
-    public int perform(List<Integer> program, int position) {
+    public int perform(List<Long> program, int position) {
         parameterManager.set(ParameterManager.POSITION, position + 1, inputs.get(), program);
         return position + 2;
     }

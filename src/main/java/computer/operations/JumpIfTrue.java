@@ -3,7 +3,6 @@ package computer.operations;
 import computer.ParameterManager;
 
 import java.util.List;
-import java.util.Queue;
 
 public class JumpIfTrue implements Operation {
 
@@ -14,13 +13,13 @@ public class JumpIfTrue implements Operation {
     }
 
     @Override
-    public int perform(List<Integer> program, int position) {
+    public int perform(List<Long> program, int position) {
         int[] paramModes = parameterManager.getParamModes(program.get(position));
-        int num1 = parameterManager.get(paramModes[0], position + 1, program);
-        int num2 = parameterManager.get(paramModes[1], position + 2, program);
+        long num1 = parameterManager.get(paramModes[0], position + 1, program);
+        long num2 = parameterManager.get(paramModes[1], position + 2, program);
 
         if (num1 != 0) {
-            return num2;
+            return (int) num2;
         } else {
             return position + 3;
         }
