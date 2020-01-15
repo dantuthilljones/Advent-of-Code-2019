@@ -2,5 +2,5 @@ package computer.io;
 
 public interface ComputerInput {
 
-    int get();
+    long get();
 }

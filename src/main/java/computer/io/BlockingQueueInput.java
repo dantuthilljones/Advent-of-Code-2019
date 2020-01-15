@@ -10,7 +10,7 @@ public class BlockingQueueInput implements ComputerInput {
     }
 
     @Override
-    public int get() {
+    public long get() {
         try {
             System.out.println(Thread.currentThread().getName() + ": Waiting to take input..");
             int take = queue.take();

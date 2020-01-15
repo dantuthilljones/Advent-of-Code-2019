@@ -32,16 +32,15 @@ public class ParameterManager {
     public long set(int paramMode, int position, long value, List<Long> program) {
         if (paramMode == POSITION) {
             return program.set(program.get(position).intValue(), value);
-        } else if (paramMode == POSITION) {
-            return program.set(program.get(position).intValue() + relativeBase, value);
         } else if (paramMode == IMMEDIATE) {
             throw new RuntimeException("Cannot set values in Immediate mode");
+        } else if (paramMode == RELATIVE) {
+            return program.set(program.get(position).intValue() + relativeBase, value);
         }
         throw new RuntimeException("Unknown parameter mode " + paramMode);
     }
 
     public void adjustRelativeBase(long by) {
-
-         += by;
+        relativeBase += by;
     }
 }

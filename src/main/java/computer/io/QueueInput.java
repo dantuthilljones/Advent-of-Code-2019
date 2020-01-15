@@ -4,18 +4,18 @@ import java.util.Queue;
 
 public class QueueInput implements ComputerInput {
 
-    private Queue<Integer> queue;
+    private Queue<Long> queue;
 
-    public QueueInput(Queue<Integer> queue) {
+    public QueueInput(Queue<Long> queue) {
         this.queue = queue;
     }
 
     @Override
-    public int get() {
+    public long get() {
         return queue.remove();
     }
 
-    public void setQueue(Queue<Integer> queue) {
+    public void setQueue(Queue<Long> queue) {
         this.queue = queue;
     }
 }

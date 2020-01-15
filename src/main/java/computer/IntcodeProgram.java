@@ -22,13 +22,8 @@ public class IntcodeProgram extends ArrayList<Long> {
     }
 
     public void fillUntil(int position) {
-        if (position > size()) {
-            for(int i = size(); i <= position; i++) {
-                add(0l);
-            }
+        while (position >= size()) {
+            add(0l);
         }
     }
-
-
-
 }

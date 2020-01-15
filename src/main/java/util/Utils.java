@@ -13,4 +13,12 @@ public class Utils {
         return result;
     }
 
+    public static Queue<Long> longQueue(int... inputs) {
+        Queue<Long> result = new ArrayDeque<>();
+        for(int i : inputs) {
+            result.add((long) i);
+        }
+        return result;
+    }
+
 }
