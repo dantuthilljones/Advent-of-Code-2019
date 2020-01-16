@@ -5,15 +5,13 @@ import com.google.common.math.IntMath;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AsteroidMap {
 
     private final List<List<Boolean>> map;
-    private final List<Asteroid> asteroids;
+    private List<Asteroid> asteroids;
 
     private AsteroidMap(List<List<Boolean>> map) {
         this.map = map;
@@ -32,7 +30,7 @@ public class AsteroidMap {
     }
 
     private boolean asteroidAt(int x, int y) {
-        return map.get(x).get(y);
+        return map.get(y).get(x);
     }
 
 
@@ -109,5 +107,12 @@ public class AsteroidMap {
         }
 
         return true;
+    }
+
+    public void remove(Collection<Asteroid> asteroids) {
+        for (Asteroid asteroid : asteroids) {
+            map.get(asteroid.getX()).set(asteroid.getY(), false);
+        }
+        this.asteroids = calculateAsteroids();
     }
 }
