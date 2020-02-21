@@ -61,26 +61,26 @@ public class AsteroidMap {
                 .count();
     }
 
-    public boolean isVisible(Asteroid from, Asteroid to) {
-        int diffX = to.getX()-from.getX();
-        int diffY = to.getY()-from.getY();
+    public boolean isVisible(Asteroid station, Asteroid asteroid) {
+        int diffX = asteroid.getX()-station.getX();
+        int diffY = asteroid.getY()-station.getY();
 
         if (diffX == 0 && diffY == 0) {
             return false;
         } else if (diffX == 0) {
-            int minY = Integer.min(to.getY(), from.getY());
-            int maxY = Integer.max(to.getY(), from.getY());
+            int minY = Integer.min(asteroid.getY(), station.getY());
+            int maxY = Integer.max(asteroid.getY(), station.getY());
             for(int checkY = minY +1; checkY < maxY; checkY++) {
-                if(asteroidAt(from.getX(), checkY)) {
+                if(asteroidAt(station.getX(), checkY)) {
                     return false;
                 }
             }
             return true;
         } else if (diffY == 0) {
-            int minX = Integer.min(to.getX(), from.getX());
-            int maxX = Integer.max(to.getX(), from.getX());
+            int minX = Integer.min(asteroid.getX(), station.getX());
+            int maxX = Integer.max(asteroid.getX(), station.getX());
             for(int checkX = minX +1; checkX < maxX; checkX++) {
-                if(asteroidAt(checkX, from.getY())) {
+                if(asteroidAt(checkX, station.getY())) {
                     return false;
                 }
             }
@@ -95,10 +95,10 @@ public class AsteroidMap {
         int offsetX = diffX/gcd;
         int offsetY = diffY/gcd;
 
-        int checkX = from.getX() + offsetX;
-        int checkY = from.getY() + offsetY;
+        int checkX = station.getX() + offsetX;
+        int checkY = station.getY() + offsetY;
 
-        while(checkX != to.getX()) {
+        while(checkX != asteroid.getX()) {
             if(asteroidAt(checkX, checkY)) {
                 return  false;
             }
