@@ -8,9 +8,9 @@ import java.util.List;
 public class Output implements Operation {
 
     private final ParameterManager parameterManager;
-    private final ComputerOutput computerOutput;
+    private final computer.io.ComputerOutput computerOutput;
 
-    public Output(ParameterManager parameterManager, ComputerOutput computerOutput) {
+    public Output(ParameterManager parameterManager, computer.io.ComputerOutput computerOutput) {
         this.parameterManager = parameterManager;
         this.computerOutput = computerOutput;
     }

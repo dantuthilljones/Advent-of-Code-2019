@@ -2,7 +2,6 @@ package computer;
 
 import com.google.common.collect.ImmutableList;
 import computer.io.ComputerInput;
-import computer.io.ComputerOutput;
 import computer.io.ListOutput;
 import computer.io.QueueInput;
 import computer.operations.*;
@@ -27,7 +26,7 @@ public class Computers {
     }
 
 
-    public static IntcodeComputer makeWithIO(ComputerInput input, ComputerOutput output) {
+    public static IntcodeComputer makeWithIO(ComputerInput input, computer.io.ComputerOutput output) {
         ParameterManager parameterManager = new ParameterManager();
         return new IntcodeComputer(
                 ImmutableList.of(
