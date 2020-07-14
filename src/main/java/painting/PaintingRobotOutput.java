@@ -7,6 +7,9 @@ public class PaintingRobotOutput implements ComputerOutput {
     private final static long BLACK_LONG = 0;
     private final static long WHITE_LONG = 1;
 
+    private final static long LEFT = 0;
+    private final static long RIGHT = 1;
+
     private final static char BLACK_CHAR = '#';
     private final static char WHITE_CHAR = '.';
 
@@ -26,15 +29,20 @@ public class PaintingRobotOutput implements ComputerOutput {
     @Override
     public void output(long value) {
         if (status == Status.PAINTING) {
-            if (value == BLACK_LONG) {
-                hull.set(robot.getX(), robot.getY(), BLACK_CHAR);
-            } else if (value == WHITE_LONG) {
-                hull.set(robot.getX(), robot.getY(), WHITE_CHAR);
+            if (value == BLACK_LONG || value == WHITE_LONG) {
+                hull.set(robot.getX(), robot.getY(), (int) value);
             } else {
                 throw new IllegalArgumentException("Unknown value: " + value);
             }
-        } else {
-
+        } else if (status == Status.TURNING) {
+            if (value == LEFT) {
+                robot.left();
+            } else if (value == RIGHT) {
+                robot.right();
+            } else {
+                throw new IllegalArgumentException("Unknown value: " + value);
+            }
+            robot.forward();
         }
 
         updateStatus();
